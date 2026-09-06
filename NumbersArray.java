@@ -21,7 +21,7 @@ public class NumbersArray {
     
 
     // Write your methods here
-    public static Integer findMax(Integer[] input) {
+    public static int findMax(Integer[] input) {
         // 0 1 2 boundary
         int max = 0;
         for (int n : input) {
@@ -31,7 +31,7 @@ public class NumbersArray {
     }
     public static Integer[] findDuplicates(Integer[] input) {
         ArrayList<Integer> seen = new ArrayList<>();
-        TreeSet<Integer> duplicates = new TreeSet<>();
+        ArrayList<Integer> duplicates = new ArrayList<>();
         for (int n: input) {
             if (!seen.contains(n)) {
                 seen.add(n);
