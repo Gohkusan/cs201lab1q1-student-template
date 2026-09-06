@@ -50,9 +50,8 @@ public class NumbersArray {
             if (!seen.contains(n)) {
                 seen.add(n);
                 unique.add(n);
-                continue;
             }
-            else {
+            else if (unique.contains(n)) {
                 // unique.remove(n);
                 // this removes by index
                 unique.remove(Integer.valueOf(n));
