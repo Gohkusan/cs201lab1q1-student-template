@@ -18,48 +18,54 @@ public class NumbersArray {
         System.out.println("Duplicate numbers : " + Arrays.toString(findDuplicates(input)));
         System.out.println("Unique numbers : " + Arrays.toString(findUnique(input))); 
     }
-    
 
-    // Write your methods here
-    public static int findMax(Integer[] input) {
-        // 0 1 2 boundary
-        int max = 0;
-        for (int n : input) {
-            if (n > max) max = n;
+    // findMax method - returns maximum value in an array 
+    public static int findMax(Integer[] arr) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
         }
         return max;
     }
-    public static Integer[] findDuplicates(Integer[] input) {
-        ArrayList<Integer> seen = new ArrayList<>();
-        ArrayList<Integer> duplicates = new ArrayList<>();
-        for (int n: input) {
-            if (!seen.contains(n)) {
-                seen.add(n);
+
+    // findDuplicates method - returns an array (Integer[]) containing the duplicate values in the array
+    public static Integer[] findDuplicates(Integer[] arr) {
+        Integer[] duplicates_arr = new Integer[arr.length];
+        int j = 0;
+        int k = 0;
+        int counter = 0;
+        HashSet<Integer> duplicate_checker = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (duplicate_checker.contains(arr[i])) {
+                duplicates_arr[j++] = arr[i];
+                counter++;
                 continue;
             }
-            if (seen.contains(n)) {
-                duplicates.add(n);
+            duplicate_checker.add(arr[k++]);
+        }
+        Integer[] trimmed = Arrays.copyOf(duplicates_arr, counter);
+        return trimmed;
+    }
+
+    // findUnique - returns an array (Integer[]) containing the unique values in the array 
+    public static Integer[] findUnique(Integer[] arr) {
+        HashMap<Integer, Integer> unique_checker = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            unique_checker.merge(arr[i], 1, Integer::sum);
+        }
+        Integer[] unique_arr = new Integer[arr.length];
+        int i = 0;
+        int counter = 0;
+        for (Integer key : unique_checker.keySet()) {
+            if (unique_checker.get(key) == 1) {
+                unique_arr[i++] = key;
+                counter++;
             }
         }
-        return duplicates.toArray(new Integer[0]);
+        Integer[] trimmed = Arrays.copyOf(unique_arr, counter);
+        return trimmed;
     }
-    public static Integer[] findUnique(Integer[] input) {
-        ArrayList<Integer> seen = new ArrayList<>();
-        ArrayList<Integer> unique = new ArrayList<>(); 
-        for (int n : input) {
-            if (!seen.contains(n)) {
-                seen.add(n);
-                unique.add(n);
-                continue;
-            }
-            if(seen.contains(n)) {
-                // unique.remove(n);
-                // this removes by index
-                unique.remove(Integer.valueOf(n));
-            }
-        }
-        return unique.toArray(new Integer[0]);
-    }
-    
 }
 
