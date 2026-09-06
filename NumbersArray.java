@@ -21,7 +21,7 @@ public class NumbersArray {
     
 
     // Write your methods here
-    private static int findMax(Integer[]input) {
+    public static int findMax(Integer[]input) {
         // 0 1 2 boundary
         int max = 0;
         for (int n : input) {
@@ -29,7 +29,7 @@ public class NumbersArray {
         }
         return max;
     }
-    private static Integer[] findDuplicates(Integer[] input) {
+    public static Integer[] findDuplicates(Integer[] input) {
         ArrayList<Integer> seen = new ArrayList<>();
         TreeSet<Integer> duplicates = new TreeSet<>();
         for (int n: input) {
@@ -43,7 +43,7 @@ public class NumbersArray {
         }
         return duplicates.toArray(new Integer[0]);
     }
-    private static Integer[] findUnique(Integer[]input) {
+    public static Integer[] findUnique(Integer[]input) {
         ArrayList<Integer> seen = new ArrayList<>();
         ArrayList<Integer> unique = new ArrayList<>(); 
         for (int n : input) {
